@@ -1,5 +1,12 @@
 package ifpr.pgua.eic.tads.contatos.model.daos;
 
-public class PedidoDAO {
-    
+import java.util.List;
+
+import com.github.hugoperlin.results.Resultado;
+
+import ifpr.pgua.eic.tads.contatos.model.Pedido;
+
+public interface PedidoDAO {
+    Resultado<Pedido> criar(Pedido pedido);
+    Resultado<List<Pedido>> listar();
 }
