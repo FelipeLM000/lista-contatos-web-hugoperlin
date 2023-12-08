@@ -23,7 +23,7 @@ public class JDBCPedidoDAO implements PedidoDAO {
     public Resultado<Pedido> criar(Pedido pedido) {
         try (Connection con = fabricaConexao.getConnection();) {
 
-            PreparedStatement pstm = con.prepareStatement("INSERT INTO oo_pedidos(nome, valor) VALUES (?,?)");
+            PreparedStatement pstm = con.prepareStatement("INSERT INTO oo_pedidos(nome, valor, observacao) VALUES (?,?,?)");
 
             pstm.setString(1, pedido.getNome());
             pstm.setString(2, pedido.getValor());
