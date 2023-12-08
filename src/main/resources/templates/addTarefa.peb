@@ -11,7 +11,7 @@
     <input type="text" id="descricao" name="descricao" value="{{descricao}}"/><br />
     <label for="categoria">Categoria:</label>
     <select name="categoria" id="categoria" value="{{categoriaId}}">
-        {% for categoria in categorias%}
+        {% for categoria in categorias %}
             <option value="{{categoria.id}}" 
             {% if categoria.id == categoriaId %}
             selected

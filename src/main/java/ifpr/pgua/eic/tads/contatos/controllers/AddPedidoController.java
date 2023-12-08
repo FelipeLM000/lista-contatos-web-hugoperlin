@@ -46,7 +46,7 @@ public class AddPedidoController {
         Resultado<Categoria> resultadoCategoria = repositorioCategoria.getById(Integer.valueOf(categoriaId));
 
         Categoria categoria = resultadoCategoria.comoSucesso().getObj();
-        Resultado<Pedido> resultado = repositorio.cadastrar(nome, valor, categoria);
+        Resultado<Pedido> resultado = repositorio.cadastrar(nome, valor, observacao, categoria);
         
         Map<String, Object> model = new HashMap<>();
         model.put("resultado", resultado);

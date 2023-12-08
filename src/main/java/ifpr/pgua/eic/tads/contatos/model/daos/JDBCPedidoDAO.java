@@ -26,7 +26,7 @@ public class JDBCPedidoDAO implements PedidoDAO {
             PreparedStatement pstm = con.prepareStatement("INSERT INTO oo_pedidos(nome, valor) VALUES (?,?)");
 
             pstm.setString(1, pedido.getNome());
-            pstm.setFloat(2, pedido.getValor());
+            pstm.setString(2, pedido.getValor());
             pstm.setString(3, pedido.getObservacao());
             pstm.setInt(4, pedido.getCategoria().getId());
 
@@ -50,7 +50,7 @@ public class JDBCPedidoDAO implements PedidoDAO {
             while (rs.next()) {
                 int id = rs.getInt("id");
                 String nome = rs.getString("nome");
-                Float valor = rs.getFloat("valor");
+                String valor = rs.getString("valor");
                 String observacao = rs.getString("observacao");
 
                 Pedido pedido = new Pedido(id, nome, valor, observacao);

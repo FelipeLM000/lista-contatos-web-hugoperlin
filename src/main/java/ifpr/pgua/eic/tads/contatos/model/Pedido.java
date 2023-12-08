@@ -3,18 +3,18 @@ package ifpr.pgua.eic.tads.contatos.model;
 public class Pedido {
     private int id;
     private String nome;
-    private float valor;
+    private String valor;
     private String observacao;
     private Categoria categoria;
 
-    public Pedido(int id, String nome, float valor, String observacao) {
+    public Pedido(int id, String nome, String valor, String observacao) {
         this.id = id;
         this.nome = nome;
         this.valor = valor;
         this.observacao = observacao;
     }
 
-    public Pedido(String nome, float valor, String observacao, Categoria categoria) {
+    public Pedido(String nome, String valor, String observacao, Categoria categoria) {
         this.nome = nome;
         this.valor = valor;
         this.observacao = observacao;
@@ -37,11 +37,11 @@ public class Pedido {
         this.nome = nome;
     }
 
-    public float getValor() {
+    public String getValor() {
         return valor;
     }
 
-    public void setValor(float valor) {
+    public void setValor(String valor) {
         this.valor = valor;
     }
     

@@ -7,5 +7,8 @@
     <h1>Minhas Tarefas!!!</h1>
     <a href="/addTarefa">Cadastrar Tarefa</a>
     <a href="/listTarefa">Listar Tarefas</a>
+    <h1>Meus Pedidos!!!</h1>
+    <a href="/addPedido">CadastrarPedido</a>
+    <a href="/listPedido">Listar Pedidos</a>
 {% endblock %}    
 

@@ -1,0 +1,16 @@
+{% extends "templates/base.peb" %}
+
+{% block content %}
+
+{% if resultado.foiErro %}
+<h1> {{ resultado.getMsg }}</h1>
+{% else %}
+    <ul>
+    {% for pedido in lista %}
+        <li>{{pedido.nome}} ({{pedido.categoria.nome}})</li>
+    {% endfor %}
+    </ul>
+{% endif %}
+
+
+{% endblock %}

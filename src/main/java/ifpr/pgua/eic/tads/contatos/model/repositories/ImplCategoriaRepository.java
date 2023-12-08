@@ -40,4 +40,16 @@ public class ImplCategoriaRepository implements CategoriaRepository{
         return dao.listar();
     }
     
+
+    @Override
+    public Resultado<List<Categoria>> listarTodos() {
+        var resultado = dao.listarTodos();
+
+        if(resultado.foiSucesso()){
+            lista.clear();
+            lista.addAll(resultado.comoSucesso().getObj());
+        }
+
+        return dao.listarTodos();
+    }
 }

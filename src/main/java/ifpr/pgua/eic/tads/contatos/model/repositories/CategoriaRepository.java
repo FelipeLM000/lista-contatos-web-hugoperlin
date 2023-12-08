@@ -9,4 +9,5 @@ import ifpr.pgua.eic.tads.contatos.model.Categoria;
 public interface CategoriaRepository {
     Resultado<Categoria> getById(int id);
     Resultado<List<Categoria>> listarTodas();
+    Resultado<List<Categoria>> listarTodos();
 }

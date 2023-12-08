@@ -1,0 +1,29 @@
+{% extends "templates/base.peb" %}
+{% block content %}
+{% if resultado != null %}
+    {{resultado.getMsg}}
+{% endif %}
+<h1>Adicionar Pedido</h1>
+<form method="post" action="/addPedido">
+    <label for="nome">Nome:</label>
+    <input type="text" id="nome" name="nome" value="{{nome}}"/><br />
+
+    <label for="valor">Valor:</label>
+    <input type="text" id="valor" name="valor" value="{{valor}}"/><br />
+
+    <label for="observacao">Observacao:</label>
+    <input type="text" id="observacao" name="observacao" value="{{observacao}}"/><br />
+
+    <label for="categoria">Categoria:</label>
+    <select name="categoria" id="categoria" value="{{categoriaId}}">
+        {% for categoria in categorias %}
+            <option value="{{categoria.id}}"`
+            {% if categoria.id == categoriaId %}
+            selected
+            {% endif %}
+            >{{categoria.nome}}</option>
+        {% endfor %}
+    </select>
+    <input type="submit" />
+</form>
+{% endblock %}

@@ -11,6 +11,7 @@ import com.github.hugoperlin.results.Resultado;
 
 import ifpr.pgua.eic.tads.contatos.model.Categoria;
 import ifpr.pgua.eic.tads.contatos.model.FabricaConexoes;
+import ifpr.pgua.eic.tads.contatos.model.Pedido;
 import ifpr.pgua.eic.tads.contatos.model.Tarefa;
 
 public class JDBCCategoriaDAO implements CategoriaDAO {
@@ -74,4 +75,55 @@ public class JDBCCategoriaDAO implements CategoriaDAO {
     
     }
 
+
+    @Override
+    public Resultado<List<Categoria>> listarTodos() {
+        ArrayList<Categoria> categorias = new ArrayList<>();
+
+        try (Connection con = fabricaConexao.getConnection();) {
+            PreparedStatement pstm = con.prepareStatement("SELECT * FROM oo_categorias");
+
+            ResultSet rs = pstm.executeQuery();
+
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String nome = rs.getString("nome");
+                String valor = rs.getString("valor");
+                String observacao = rs.getString("observacao");
+
+                Categoria categoria = new Categoria(id, nome, valor, observacao);
+
+                categorias.add(categoria);
+            }
+            con.close();
+            return Resultado.sucesso("Categorias carregadas", categorias);
+        } catch (SQLException e) {
+            return Resultado.erro("Problema ao fazer seleção!! " + e.getMessage());
+        }
+    }
+
+    @Override
+    public Resultado<Categoria> buscarCategoriaPedido(Pedido pedido) {
+        try (Connection con = fabricaConexao.getConnection();) {
+            PreparedStatement pstm = con.prepareStatement("SELECT * FROM oo_categorias inner join oo_pedidos ON oo_categorias.id=oo_pedidos.idCategoria WHERE oo_pedidos.id=?");
+
+            pstm.setInt(1, pedido.getId());
+
+            ResultSet rs = pstm.executeQuery();
+
+            if (rs.next()) {
+                int id = rs.getInt("oo_categorias.id");
+                String nome = rs.getString("oo_categorias.nome");
+                String valor = rs.getString("oo_categorias.valor");
+                String observacao = rs.getString("oo_categorias.observacao");
+
+                Categoria categoria = new Categoria(id, nome, valor, observacao);
+                return Resultado.sucesso("Categorias carregadas", categoria);
+
+            }
+            return Resultado.erro("Categorias não encontradas");
+        } catch (SQLException e) {
+            return Resultado.erro("Problema ao fazer seleção!! " + e.getMessage());
+        }
+    }
 }
